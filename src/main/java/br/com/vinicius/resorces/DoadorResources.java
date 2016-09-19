@@ -27,12 +27,12 @@ public class DoadorResources {
     private DoadorServices services;
 
     @CrossOrigin
-    @RequestMapping(value = "/listar",method = RequestMethod.GET)
+    @RequestMapping(value = "listar",method = RequestMethod.GET)
     public ResponseEntity<List<Doador>> listar(){
         return ResponseEntity.status(HttpStatus.OK).body(services.listar());
     }
 
-    @RequestMapping(value = "/salvar",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> salvar(@Valid @RequestBody Doador doador){
         doador = services.salvar(doador);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(doador.getId()).toUri();
